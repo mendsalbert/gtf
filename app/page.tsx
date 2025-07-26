@@ -4,10 +4,8 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import {
   Menu,
-  Search,
   User,
   Home,
   Monitor,
@@ -22,7 +20,6 @@ import {
   Play,
   MapPin,
   ChevronRight,
-  Volume2,
   HandHeart,
   Users2,
   Briefcase,
@@ -63,13 +60,7 @@ export default function GTFChurch() {
     return () => clearInterval(timer)
   }, [slides.length])
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-  }
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -187,7 +178,7 @@ export default function GTFChurch() {
                   <Cross className="h-5 w-5" />
                   <div>
                     <div className="font-medium">Salvation</div>
-                    <div className="text-sm text-gray-400">Receive God's grace</div>
+                    <div className="text-sm text-gray-400">Receive God&apos;s grace</div>
                   </div>
                 </a>
                 <a href="#" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
@@ -403,9 +394,9 @@ export default function GTFChurch() {
                     <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
                       <Baby className="h-6 w-6 text-white" />
                     </div>
-                    <div className="text-sm text-cyan-200 font-ui">Children's Ministry</div>
+                    <div className="text-sm text-cyan-200 font-ui">Children&apos;s Ministry</div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">Partnering with parents to develop kids' faith.</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Partnering with parents to develop kids&apos; faith.</h3>
                   <Button variant="ghost" className="text-white hover:bg-white/10 p-0 font-ui">
                     Learn more <ChevronRight className="ml-2 h-4 w-4" />
                   </Button>

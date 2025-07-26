@@ -3,6 +3,163 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* WOW Section Animations */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes count {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-count {
+  animation: count 1s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Text Swap Animation */
+@keyframes textSwap {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-10px);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes textSwapBlur {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(2px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+    filter: blur(2px);
+  }
+}
+
+.text-swap-enter {
+  animation: textSwap 1s ease-in-out;
+}
+
+.text-swap-exit {
+  animation: textSwapBlur 1s ease-in-out;
+}
+
+/* 3D Image Gallery Styles */
+.rotate-y-6 {
+  transform: rotateY(6deg);
+}
+
+.rotate-y-12 {
+  transform: rotateY(12deg);
+}
+
+.rotate-y-18 {
+  transform: rotateY(18deg);
+}
+
+.-rotate-y-6 {
+  transform: rotateY(-6deg);
+}
+
+.-rotate-y-12 {
+  transform: rotateY(-12deg);
+}
+
+.-rotate-y-18 {
+  transform: rotateY(-18deg);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

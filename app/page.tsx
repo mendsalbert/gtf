@@ -196,11 +196,6 @@ export default function GTFHome() {
 
             {/* Right: Framed image + floating cards */}
             <div className="relative min-h-[460px] lg:min-h-0 lg:h-auto self-stretch">
-              {/* Background floating image — top left, behind everything */}
-              <div className="absolute -left-10 -top-6 w-[190px] h-[210px] rounded-2xl overflow-hidden shadow-lg border-3 border-white/80 z-0 opacity-70">
-                <Image src="/families.jpg" alt="Families" fill className="object-cover" />
-              </div>
-
               {/* Gradient border frame — fills full column height */}
               <div className="absolute inset-0 rounded-[28px] bg-gradient-to-br from-orange-300 via-[#f56d24]/50 to-purple-300/80 p-2.5 z-10">
                 {/* Main image */}

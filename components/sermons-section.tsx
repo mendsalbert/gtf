@@ -61,7 +61,7 @@ export function SermonsSection() {
   }, [])
 
   return (
-    <section className="py-24 bg-white" id="sermons">
+    <section id="sermons" className="py-24 bg-white scroll-mt-20 lg:scroll-mt-[72px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-12">
           <div>

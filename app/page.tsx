@@ -7,13 +7,15 @@ import { AlignJustify, Apple, Play } from "lucide-react"
 import { SermonsSection } from "@/components/sermons-section"
 
 const NAV_LINKS = [
-  { label: "About", href: "#" },
-  { label: "Connect", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Connect", href: "#connect" },
   { label: "Sermons", href: "#sermons" },
-  { label: "Bible Study", href: "#" },
-  { label: "Devotional", href: "#" },
-  { label: "Give", href: "#" },
+  { label: "Bible Study", href: "#bible-study" },
+  { label: "Devotional", href: "#devotional" },
+  { label: "Give", href: "#give" },
 ]
+
+const PLAN_VISIT_HREF = "#visit"
 
 const FEATURES = [
   { id: 0, label: "Join a small group and grow in community" },
@@ -46,6 +48,8 @@ export default function GTFHome() {
   const [isAnimating, setIsAnimating] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const closeMenu = () => setMenuOpen(false)
+
   useEffect(() => {
     const interval = setInterval(() => {
       setIsAnimating(true)
@@ -58,7 +62,7 @@ export default function GTFHome() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white font-body">
+    <div className="min-h-screen bg-white font-body overflow-x-hidden w-full">
 
       {/* ── NAVIGATION ── */}
       <header className="bg-black sticky top-0 z-50">
@@ -114,7 +118,7 @@ export default function GTFHome() {
             {/* Right — single CTA */}
             <div className="flex items-center gap-3 flex-shrink-0">
               <Link
-                href="#"
+                href={PLAN_VISIT_HREF}
                 className="hidden lg:inline-block bg-[#f56d24] text-white font-display text-xs font-bold tracking-widest uppercase px-6 py-2.5 rounded-full hover:bg-[#e55a1a] transition-all duration-200"
               >
                 PLAN A VISIT
@@ -132,18 +136,20 @@ export default function GTFHome() {
 
         {/* Mobile Dropdown */}
         {menuOpen && (
-          <div className="lg:hidden bg-[#1a1a1a] border-t border-white/10 px-4 py-4 space-y-3">
+          <div className="lg:hidden bg-black border-t border-white/10 px-4 py-4 space-y-3">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="block text-gray-300 text-xs font-semibold tracking-widest uppercase py-1.5"
+                onClick={closeMenu}
+                className="block text-gray-300 hover:text-white text-xs font-semibold tracking-widest uppercase py-1.5 transition-colors"
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href="#"
+              href={PLAN_VISIT_HREF}
+              onClick={closeMenu}
               className="inline-block mt-2 bg-[#f56d24] text-white text-xs font-bold tracking-widest uppercase px-6 py-2.5 rounded-full"
             >
               PLAN A VISIT
@@ -153,7 +159,7 @@ export default function GTFHome() {
       </header>
 
       {/* ── HERO ── */}
-      <section className="bg-white overflow-hidden">
+      <section id="visit" className="bg-white overflow-hidden scroll-mt-20 lg:scroll-mt-[72px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-8 items-stretch py-10">
 
@@ -176,7 +182,7 @@ export default function GTFHome() {
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8">
                 <Link
-                  href="#"
+                  href={PLAN_VISIT_HREF}
                   className="bg-black text-white font-display text-xs font-bold tracking-widest uppercase px-8 py-4 rounded-full hover:bg-[#f56d24] transition-all duration-300 text-center w-full sm:w-auto"
                 >
                   PLAN YOUR VISIT
@@ -205,11 +211,11 @@ export default function GTFHome() {
             </div>
 
             {/* Right: Framed image + floating cards */}
-            <div className="relative min-h-[460px] lg:min-h-0 lg:h-auto self-stretch">
+            <div className="relative min-h-[460px] lg:min-h-0 lg:h-auto self-stretch overflow-hidden">
               {/* Gradient border frame — fills full column height */}
               <div className="absolute inset-0 rounded-[28px] bg-gradient-to-br from-orange-300 via-[#f56d24]/50 to-purple-300/80 p-2.5 z-10">
                 {/* Main image */}
-                <div className="relative w-full h-full rounded-[20px] overflow-hidden shadow-[0_0_50px_20px_rgba(245,109,36,0.3)]">
+                <div className="relative w-full h-full rounded-[20px] overflow-hidden shadow-xl shadow-orange-500/20">
                   <Image
                     src="/hero.jpg"
                     alt="GTF Church Family"
@@ -221,12 +227,12 @@ export default function GTFHome() {
               </div>
 
               {/* Floating card — top center */}
-              <div className="absolute left-1/2 -top-10 transform -translate-x-1/2 w-[190px] h-[210px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-20">
+              <div className="absolute left-1/2 top-4 -translate-x-1/2 w-[140px] h-[160px] sm:w-[160px] sm:h-[180px] lg:w-[190px] lg:h-[210px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-20">
                 <Image src="/kids.jpg" alt="Kids" fill className="object-cover" />
               </div>
 
               {/* Floating card — bottom left */}
-              <div className="absolute -left-8 -bottom-10 w-[200px] h-[230px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-20">
+              <div className="absolute left-4 bottom-4 w-[130px] h-[160px] sm:w-[150px] sm:h-[190px] lg:w-[200px] lg:h-[230px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-20">
                 <Image src="/youth.jpg" alt="Youth" fill className="object-cover" />
               </div>
             </div>
@@ -235,10 +241,10 @@ export default function GTFHome() {
       </section>
 
       {/* ── INTENTIONAL DISCIPLESHIP SECTION ── */}
-      <section className="py-24 bg-white">
+      <section id="about" className="py-24 bg-white scroll-mt-20 lg:scroll-mt-[72px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-display text-5xl md:text-6xl font-black uppercase text-gray-900 mb-4">
+          <div className="text-center mb-16 max-w-full min-w-0">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black uppercase text-gray-900 mb-4 max-w-full mx-auto px-1 text-balance leading-[1.05] break-words">
               Intentionally grow your{" "}
               <span className="text-[#f56d24]">faith</span>
             </h2>
@@ -325,7 +331,7 @@ export default function GTFHome() {
       </section>
 
       {/* ── FEATURES LIST SECTION ── */}
-      <section className="py-24 bg-gray-50">
+      <section id="connect" className="py-24 bg-gray-50 scroll-mt-20 lg:scroll-mt-[72px] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left: Interactive list */}
@@ -372,7 +378,7 @@ export default function GTFHome() {
             {/* Right: Image mockup */}
             <div className="relative">
               <div className="bg-gradient-to-br from-orange-100 to-pink-100 rounded-3xl p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[#f56d24]/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                <div className="absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-[#f56d24]/10 rounded-full -translate-y-1/2 translate-x-1/4 sm:translate-x-1/2 pointer-events-none"></div>
                 <Image
                   src="/ourcommunityreseource.jpg"
                   alt="Community resources"
@@ -513,12 +519,12 @@ export default function GTFHome() {
       </section>
 
       {/* ── FAMILY DEVOTIONS CTA ── */}
-      <section className="py-24 bg-gray-50">
+      <section id="devotional" className="py-24 bg-gray-50 scroll-mt-20 lg:scroll-mt-[72px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left: Text */}
-            <div>
-              <h2 className="font-display text-5xl md:text-6xl font-black uppercase text-gray-900 leading-none mb-6">
+            <div className="max-w-full min-w-0">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black uppercase text-gray-900 leading-[1.05] mb-6 max-w-full px-1 text-balance break-words">
                 Equip families to
                 <br />
                 lead faith conversations
@@ -552,8 +558,8 @@ export default function GTFHome() {
 
       <SermonsSection />
 
-            {/* ── DIG INTO THE WORD ── */}
-      <section className="py-24 bg-[#f8f9fa]">
+      {/* ── DIG INTO THE WORD ── */}
+      <section id="bible-study" className="py-24 bg-[#f8f9fa] scroll-mt-20 lg:scroll-mt-[72px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header — left-aligned editorial style */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
@@ -627,7 +633,7 @@ export default function GTFHome() {
       </section>
 
       {/* ── GENEROSITY ── */}
-      <section className="py-24 bg-white">
+      <section id="give" className="py-24 bg-white scroll-mt-20 lg:scroll-mt-[72px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left: Image card */}
@@ -709,12 +715,12 @@ export default function GTFHome() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="bg-[#111111] py-24">
+      <section className="bg-[#111111] py-24 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[#f56d24] font-display text-sm font-bold tracking-widest uppercase mb-4">
             You belong here
           </p>
-          <h2 className="font-display text-6xl md:text-8xl font-black uppercase text-white leading-none mb-6">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase text-white leading-none mb-6 break-words">
             Join our
             <br />
             <span className="text-[#f56d24]">family</span>
@@ -733,7 +739,7 @@ export default function GTFHome() {
               START YOUR JOURNEY
             </Link>
             <Link
-              href="#"
+              href={PLAN_VISIT_HREF}
               className="border-2 border-white/30 text-white font-display text-sm font-bold tracking-widest uppercase px-10 py-4 rounded-full hover:bg-white hover:text-black transition-all duration-300"
             >
               PLAN A VISIT
@@ -765,9 +771,17 @@ export default function GTFHome() {
             <div>
               <p className="font-display text-xs font-bold tracking-widest uppercase text-gray-400 mb-5">Quick Links</p>
               <ul className="space-y-3">
-                {["About Us", "Get Involved", "Sermons", "Bible Study", "Devotional", "Give", "Plan a Visit"].map((link) => (
-                  <li key={link}>
-                    <Link href="#" className="font-body text-gray-400 text-sm hover:text-white transition-colors duration-200">{link}</Link>
+                {[
+                  { label: "About Us", href: "#about" },
+                  { label: "Get Involved", href: "#connect" },
+                  { label: "Sermons", href: "#sermons" },
+                  { label: "Bible Study", href: "#bible-study" },
+                  { label: "Devotional", href: "#devotional" },
+                  { label: "Give", href: "#give" },
+                  { label: "Plan a Visit", href: PLAN_VISIT_HREF },
+                ].map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="font-body text-gray-400 text-sm hover:text-white transition-colors duration-200">{link.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -777,9 +791,15 @@ export default function GTFHome() {
             <div>
               <p className="font-display text-xs font-bold tracking-widest uppercase text-gray-400 mb-5">Ministries</p>
               <ul className="space-y-3">
-                {["Small Groups", "Kids Ministry", "Youth Group", "Worship Team", "Prayer Ministry"].map((link) => (
-                  <li key={link}>
-                    <Link href="#" className="font-body text-gray-400 text-sm hover:text-white transition-colors duration-200">{link}</Link>
+                {[
+                  { label: "Small Groups", href: "#about" },
+                  { label: "Kids Ministry", href: "#connect" },
+                  { label: "Youth Group", href: "#connect" },
+                  { label: "Worship Team", href: "#about" },
+                  { label: "Prayer Ministry", href: "#devotional" },
+                ].map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="font-body text-gray-400 text-sm hover:text-white transition-colors duration-200">{link.label}</Link>
                   </li>
                 ))}
               </ul>

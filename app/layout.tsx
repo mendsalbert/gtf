@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Inter, Libre_Baskerville, Montserrat } from "next/font/google";
 import "./globals.css";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+});
 
-const montserrat = Montserrat({ 
-  subsets: ["latin"], 
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat" 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
+});
+
+const libreBaskerville = Libre_Baskerville({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-brand",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${montserrat.variable} font-sans`}>
+      <body className={`${montserrat.variable} ${inter.variable} ${libreBaskerville.variable} font-body antialiased`}>
         {children}
       </body>
     </html>
